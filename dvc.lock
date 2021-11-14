@@ -1,37 +1,37 @@
 schema: '2.0'
 stages:
   load_data:
-    cmd: python3.7 src/load_data.py --config=params.yaml
+    cmd: python src/load_data.py --config=params.yaml
     deps:
     - path: data_given/winequality.csv
       md5: ccc8d3507eb151f53f760d36abdef888
       size: 91998
     - path: src/get_data.py
       md5: c8ad4769fbfe48e19bc36368b081bc21
-      size: 634
+      size: 658
     - path: src/load_data.py
       md5: d1d77cc498cf52c63785d2f8d45bb940
-      size: 633
+      size: 651
     outs:
     - path: data/raw/winequality.csv
       md5: 4c61c464c7ce6816f54f3d5ffc860526
-      size: 91990
+      size: 93590
   split_data:
-    cmd: python3.7 src/split_data.py --config=params.yaml
+    cmd: python src/split_data.py --config=params.yaml
     deps:
     - path: data/raw/winequality.csv
       md5: 4c61c464c7ce6816f54f3d5ffc860526
-      size: 91990
+      size: 93590
     - path: src/split_data.py
       md5: f9b93b8e5dcb0d20793328e4890981de
-      size: 1111
+      size: 1140
     outs:
     - path: data/processed/test_winequality.csv
       md5: f541a8c6a497c84a567e69a13c9d0af4
-      size: 18502
+      size: 18823
     - path: data/processed/train_winequality.csv
       md5: 6d43a464819f562a01d5d9e864be6fdc
-      size: 73625
+      size: 74905
   train_and_evaluate:
     cmd: python3.7 src/train_and_evaluate.py --config=params.yaml
     deps:
